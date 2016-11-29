@@ -1,2 +1,2 @@
-# mrd.github.io
+# mariord.github.io
 Personal Git Page
