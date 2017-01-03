@@ -1,1 +1,92 @@
-<script src="https://gist.github.com/anonymous/fa1175041df437991f7223c76be2be27.js"></script>
+<div class="center">
+  <input class="button" type="button" value="Watch Me!"></input>
+</div>
+
+<div id="player"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player, iframe;
+var $ = document.querySelector.bind(document);
+
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '0',
+    width: '0',
+    videoId: 'X_lVUdlIiQM',
+    events: {
+      'onReady': onPlayerReady
+    }
+  });
+}
+
+// when ready, wait for clicks
+function onPlayerReady(event) {
+  var player = event.target;
+  iframe = $('#player');
+  setupListener(); 
+}
+
+// Once the user clicks a custom fullscreen button
+$('input.button').addEventListener('click', function(){
+  // Play video and go fullscreen
+  player.playVideo();
+
+  var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe)();
+  }
+})
+</script>
+
+<style>
+  @font-face {
+  font-family: Vanity;
+  src: url(https://mariord.github.io/Resources/Vanity-BoldWide.ttf);
+  font-weight: 300;
+}
+body {
+  background: #122A4F;
+  font-family: Vanity;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  display: inline-block;
+  padding: 15px;
+  margin-right: 5px;
+  height: 50px;
+  min-width: 100px;
+  background: #41B6BD;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 3px;
+  box-shadow: 0 5px 0px #41b6bd;
+  border-bottom: 2px solid #3dabb2;
+}
+
+.button:hover {
+  background: #2e7a94;
+  box-shadow: 0 4px 1px #3aa4aa;
+  border-bottom: 2px solid #37999f;
+  transition: all 0.1s ease-in;
+}
+
+.button:active {
+  transform: translateY(4px);
+  border-bottom-width: 2px;
+  box-shadow: none;
+}
+
+</style>
